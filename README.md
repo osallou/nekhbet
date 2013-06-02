@@ -1,21 +1,30 @@
-License: BSD
+=======
+nekhbet
+=======
 
-Introduction
+Performance and profiling WSGI middleware agent and server
+
+
+# License
+
+BSD
+
+# Introduction
 
 WSGI filter to track request response time per URL
 Expect to add some profiling too
 
 Not to be used on production or on short time profiling only
 
-Requirements
+# Requirements
 
-Redis for storage
+Mongodb for storage
 
-Status
+# Status
 
 In development, not to be used for the moment
 
-Usage
+# Usage
 
 In application .ini file (Paste like)
 
