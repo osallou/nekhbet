@@ -6,12 +6,11 @@ from pyramid.renderers import render_to_response
 from pyramid.response import Response
 
 import json
-import requests
 
 import logging
 log = logging.getLogger(__name__)
 
-@view_config(route_name='main', renderer='mobyle.web:templates/index.mako')
+@view_config(route_name='main', renderer='nekhbet.example:templates/index.mako')
 def main_page(request):
     return {'project':'nekhbet' }
 

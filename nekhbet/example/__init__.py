@@ -20,15 +20,14 @@ def main(global_config, **settings):
 
     # Mobyle modules (which import mobyle.lib modules) can be imported
     # now, they are registered with the right configuration
-    from nekhbet.web.resources import Root
+    from nekhbet.example.resources import Root
 
     config = Configurator(root_factory = Root, settings = settings)
     config.include(pyramid_beaker)
-    config.include('pyramid_mailer')
     
     config.add_route('main', '/')
 
-    config.add_static_view('static', 'nekhbet.web:static', cache_max_age = 3600)
+    config.add_static_view('static', 'nekhbet.example:static', cache_max_age = 3600)
     config.scan()
 
     return config.make_wsgi_app()
