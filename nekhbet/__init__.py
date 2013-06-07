@@ -1,3 +1,4 @@
+__import__('pkg_resources').declare_namespace(__name__)
 """WSGI Request performance tracking
 
 .. moduleauthor:: Olivier Sallou <olivier.sallou@irisa.fr>

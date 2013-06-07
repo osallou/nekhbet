@@ -102,6 +102,9 @@ class PerfFilter(object):
         print "URL "+str(environ.get('HTTP_REFERER'))
         before = datetime.now()
 
+        if environ.get('HTTP_REFERER') == "/__profile__":
+            print "should show profiling data"
+
         def _start_response(status, headers, *args):
             '''
             Intermediate filter to track response headers

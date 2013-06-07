@@ -16,6 +16,8 @@ setup(name='nekhbet',
       install_requires=requires,
       test_requires=requires,
       entry_points="""\
+      [paste.app_factory]
+      main = nekhbet.example:main
       [paste.filter_factory]
       perf_filter_factory=nekhbet:perf_filter_factory
       """,
