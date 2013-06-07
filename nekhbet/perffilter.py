@@ -23,6 +23,15 @@ class PerfFilter(object):
         self.mystats = { }
         self.mypackages = { }
 
+
+        packages = self.config['groups'].split(',')
+        mytmppackages = {}
+        for package in packages:
+            pack = package.strip()
+            if pack+".packages" in self.config:
+                mytmppackages[pack] = self.config[pack+".packages"]
+        self.set_profiler_packages(mytmppackages)  
+
         self.profiler = cProfile.Profile()
         if self.config and not self.config['standalone']:
             t1 = threading.Thread(target=listen_messages, args=[])
@@ -105,8 +114,7 @@ class PerfFilter(object):
             response_headers = [('Content-Type', 'application/json')]
             start_response(status, response_headers)
             stats = self.profiler_stats()
-            print "stats = "+str(stats)
-            return stats
+            return json.dumps(stats)
         # Track URL
         print "URL "+str(environ.get('PATH_INFO'))
         before = datetime.now()
