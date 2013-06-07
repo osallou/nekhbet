@@ -39,6 +39,16 @@ class PerfFilter(object):
         #       unwind=False,
         #      )
 
+    def set_profiler_packages(self, packages):
+        '''
+        Define packages to group for statistics
+        :param packages: dict of package
+        :type packages: dict
+        '''
+        self.mypackages = packages
+        for package in packages:
+            self.mystats[package] = 0
+
     def start_profiling(self):
         self.profiler.enable()
 

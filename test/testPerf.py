@@ -20,8 +20,8 @@ class TestPerformance(unittest.TestCase):
     environ.set('HTTP_REFERER', '/test')
     pfilter.calculate(environ, None)
     assert(len(pfilter.counters)==1)
-    pfilter.mystats = {'nekhbet': 0, 'test': 0}
-    pfilter.mypackages = {'nekhbet': 'mobyle.web, nekhbet, mobyle.lib', 'test': 'test'}
+    pfilter.set_profiler_packages({'nekhbet': 'mobyle.web, nekhbet, mobyle.lib',
+    'test': 'test'})
     stats = pfilter.profiler_stats()
     assert(stats['test'] > 2)
 
