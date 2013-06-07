@@ -8,6 +8,7 @@ from datetime import datetime
 import cProfile, pstats, io
 import threading
 from .consumer import listen_messages
+import json
 
 class PerfFilter(object):
     '''
@@ -98,12 +99,17 @@ class PerfFilter(object):
         '''
         Calculate time elapsed for a request URL
         '''
-        # Track URL
-        print "URL "+str(environ.get('HTTP_REFERER'))
-        before = datetime.now()
-
-        if environ.get('HTTP_REFERER') == "/__profile__":
+        if str(environ.get('PATH_INFO')) == "/__profile__":
             print "should show profiling data"
+            status = '200 OK'
+            response_headers = [('Content-Type', 'application/json')]
+            start_response(status, response_headers)
+            stats = self.profiler_stats()
+            print "stats = "+str(stats)
+            return stats
+        # Track URL
+        print "URL "+str(environ.get('PATH_INFO'))
+        before = datetime.now()
 
         def _start_response(status, headers, *args):
             '''
