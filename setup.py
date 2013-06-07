@@ -18,7 +18,7 @@ setup(name='nekhbet',
       packages=find_packages(),
       include_package_data=True,
       install_requires=requires,
-      test_requires=requires,
+      tests_requires=requires,
       entry_points="""\
       [paste.app_factory]
       main = nekhbet.example:main
