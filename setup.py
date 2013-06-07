@@ -2,7 +2,11 @@
 
 from setuptools import setup, find_packages
 
-requires = [ "pymongo", "repoze.profile", "pika" ]
+requires = [ "pymongo", "repoze.profile", "pika", 'pyramid>=1.4',
+    'pyramid_debugtoolbar',
+    'waitress',
+    'pyramid_beaker',
+    ]
 
 setup(name='nekhbet',
       version='0.1.0',
@@ -11,7 +15,7 @@ setup(name='nekhbet',
       author_email='olivier.sallou@irisa.fr',
       license='BSD',
       url='https://github.com/osallou/nekhbet',
-      packages=['nekhbet'],
+      packages=find_packages(),
       include_package_data=True,
       install_requires=requires,
       test_requires=requires,

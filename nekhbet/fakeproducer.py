@@ -7,3 +7,4 @@ class FakeProducer:
 
     def sendMessage(self):
         # add to db
+        print "should send message"
