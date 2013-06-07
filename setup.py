@@ -2,7 +2,7 @@
 
 from setuptools import setup, find_packages
 
-requires = [ "pymongo", "repoze.profile" ]
+requires = [ "pymongo", "repoze.profile", "pika" ]
 
 setup(name='nekhbet',
       version='0.1.0',
