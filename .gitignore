@@ -36,3 +36,4 @@ nekhbet.egg-info
 .project
 .pydevproject
 prof.out
+*.nja
