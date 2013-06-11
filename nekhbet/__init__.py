@@ -5,8 +5,8 @@ __import__('pkg_resources').declare_namespace(__name__)
 
 """
 
-from datetime import datetime
 from .perffilter import PerfFilter
+
 
 def perf_filter_factory(global_conf, **app_conf):
     '''WSGI filter entry point'''

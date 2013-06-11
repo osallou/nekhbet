@@ -1,16 +1,13 @@
 # -*- coding: utf-8 -*-
 from pyramid.view import view_config
-from pyramid.security import remember, authenticated_userid, forget
-from pyramid.httpexceptions import HTTPFound, HTTPNotFound, HTTPForbidden
-from pyramid.renderers import render_to_response
-from pyramid.response import Response
-
-import json
+import time
 
 import logging
 log = logging.getLogger(__name__)
 
+
 @view_config(route_name='main', renderer='nekhbet.example:templates/index.mako')
 def main_page(request):
-    return {'project':'nekhbet' }
+    time.sleep(2)
+    return {'project': 'nekhbet'}
 
