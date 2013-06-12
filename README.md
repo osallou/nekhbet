@@ -18,7 +18,7 @@ Not to be used on production or on short time profiling only
 
 # Requirements
 
-Mongodb for storage
+Redis/Memcached/Mongodb for storage ?
 
 # Status
 
@@ -32,6 +32,6 @@ In application .ini file (Paste like)
 use = egg:myapp
 filter-with = nekhbet
 
-[filter:globalperf]
+[filter:nekhbet]
 use = egg:nekhbet#perf_filter_factory
 
