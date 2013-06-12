@@ -14,6 +14,7 @@ import json
 import time
 import logging
 from Queue import Queue, Empty
+
 log = logging.getLogger(__name__)
 
 
@@ -26,9 +27,16 @@ Question:
 
 
 class StatManager(object):
+    '''
+    Singleton class to manage collection and sending of requests and
+    profiling statistics
+    '''
 
+    # Singleton instance
     mngr = None
+    # Thread sending data
     t1 = None
+    # Timer to send data
     time = 30
 
     do_send = True
@@ -42,6 +50,9 @@ class StatManager(object):
 
     @classmethod
     def get_manager(klass):
+        '''
+        Return singletonn instance, create it if it does not exists.
+        '''
         if StatManager.mngr is None:
             StatManager.mngr = StatManager()
             StatManager.t1 = threading.Thread(target=StatManager.mngr.send_stats, args=[])
@@ -49,6 +60,9 @@ class StatManager(object):
         return StatManager.mngr
 
     def send_stats(self):
+        '''
+        Send stats to remote server at regular interval
+        '''
         log.info("Start new thread")
         init = datetime.now()
         last_status = None
@@ -121,22 +135,12 @@ class PerfFilter(object):
                 mytmppackages[pack] = self.config[pack + ".packages"]
         self.set_profiler_packages(mytmppackages)
 
-        #self.profiler = cProfile.Profile()
         self.statmngr = StatManager.get_manager()
         # TODO Should do locking
         if self.statmngr.profiler is None:
             self.statmngr.profiler = cProfile.Profile()
         self.start_profiling()
 
-        #self.middleware = ProfileMiddleware(
-        #       self.app,
-        #       log_filename='nekhbet.log',
-        #       cachegrind_filename='cachegrind.out.nekhbet',
-        #       discard_first_request=True,
-        #       flush_at_shutdown=True,
-        #       path='/__profile__',
-        #       unwind=False,
-        #      )
 
     def set_profiler_packages(self, packages):
         '''
