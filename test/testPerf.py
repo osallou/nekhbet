@@ -16,12 +16,15 @@ class TestPerformance(unittest.TestCase):
         # set  loop to false
         StatManager.get_manager().loop = False
 
+    def fakemethod(self,status,header):
+       return "fake" 
+
     def test_perf(self):
         pfilter = PerfFilter(FakeApp)
         environ = FakeEnviron()
         environ.set('PATH_INFO', '/test')
         environ.set('HTTP_ACCEPT', 'text/html')
-        pfilter.calculate(environ, None)
+        pfilter.calculate(environ, self.fakemethod)
         try:
             test = StatManager.get_manager().speed.get(block=False)
             assert(test is not None)
@@ -44,6 +47,7 @@ class FakeApp(object):
     def __init__(self, environ, response):
         self.environ = environ
         sleep(2)
+        response("200", None)
 
 
 class FakeEnviron:
